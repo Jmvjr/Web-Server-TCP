@@ -8,7 +8,7 @@ serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind(("", 10000))
 serverSocket.listen(5)
 
-def handleClient(connectionSocket):
+def client(connectionSocket):
     try:
         message = connectionSocket.recv(1024).decode()
         filename = message.split()[1]
@@ -39,7 +39,7 @@ def handleClient(connectionSocket):
 
 def make_client_thread(clientSocket):
     return Thread(
-        target=handleClient,
+        target=client,
         args=(clientSocket,)
     )
 
